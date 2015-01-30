@@ -3,6 +3,7 @@ package org.jstanier.sussex.labclass;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
 import org.jstanier.sussex.labclass.commandline.CommandLineInput;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,6 +18,9 @@ public class CommandLineInputTest {
 
     @Mock
     private BufferedReader bufferedReader;
+
+    @Mock
+    private Logger logger;
 
     @InjectMocks
     private CommandLineInput commandLineInput;
