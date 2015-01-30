@@ -126,7 +126,7 @@ Open up the `JobCreator` class. You should see a method called `createJob` that 
 ```java
 public void createJob(String jobName) {
         // TODO: Make a node on Zookeeper here.
-    } 
+} 
 ```
 
 For each job, make it so that it creates a node at the `/sussex/jobs` path, which is defined in `Constants.java`. For example, if the job was called `hello`, then it should create the path `/sussex/jobs/hello` on Zookeeper. You have access to the `CuratorFramework` client. Look at the [documentation](https://curator.apache.org/apidocs/org/apache/curator/framework/CuratorFramework.html) to see how to create nodes. 
