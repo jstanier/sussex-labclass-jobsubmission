@@ -96,3 +96,48 @@ Cool! Anyway, that's enough prodding around for now. Let's get out of the shell 
 [zk: 127.0.0.1:2181(CONNECTED) 3] quit
 ```
 
+## Java code
+
+Clone this repository locally by using the following command:
+
+```
+git clone https://github.com/jstanier/sussex-labclass-jobsubmission.git
+```
+
+To check everything's OK, build it with maven:
+
+```
+cd sussex-labclass-jobsubmission
+mvn clean test
+```
+
+Now, import the maven project into your IDE of choice. I assume most of you will be using Eclipse. You should now be able to open up the main class called `Main.java`, right-click anywhere around the code, and then select `Run As...` then `Java application`. You should see a program that starts up then asks you to type a job name. But it seems you haven't implemented it yet: 
+
+```
+Job name (or type exit to quit): hello
+2015-01-30 14:57:38.900  INFO 18032 --- [           main] o.j.s.l.c.CommandLineOrchestrator        : Creating job called hello
+2015-01-30 14:57:38.900  INFO 18032 --- [           main] o.j.s.labclass.zookeeper.JobCreator      : Whoops! You haven't implemented this yet
+```
+
+## Adding nodes to Zookeeper
+
+Open up the `JobCreator` class. You should see a method called `createJob` that you need to fill in. 
+
+```java
+public void createJob(String jobName) {
+        // TODO: Make a node on Zookeeper here.
+    } 
+```
+
+For each job, make it so that it creates a node at the `/sussex/jobs` path, which is defined in `Constants.java`. For example, if the job was called `hello`, then it should create the path `/sussex/jobs/hello` on Zookeeper. You have access to the `CuratorFramework` client. Look at the [documentation](https://curator.apache.org/apidocs/org/apache/curator/framework/CuratorFramework.html) to see how to create nodes. 
+
+## Done it?
+
+Great - run it again and add a job called `ididit`. Then, type `exit` to quit the program. You can see the node you created on Zookeeper by using the `zkCli.sh` shell again:
+
+```
+[zk: localhost:2181(CONNECTED) 14] ls /sussex/jobs
+[ididit]
+```
+
+Well done. Now, let's move on to the second part of the lab class.
