@@ -6,10 +6,13 @@ import java.io.InputStreamReader;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CommandLineInput {
+
+    private Logger logger = Logger.getLogger(CommandLineInput.class);
 
     private BufferedReader bufferedReader;
 
@@ -23,7 +26,7 @@ public class CommandLineInput {
         try {
             input = bufferedReader.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error when reading input.", e);
         }
         return input;
     }
